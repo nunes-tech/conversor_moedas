@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de moedas por Nunes</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="scripts.js"></script>
+</head>
+<body>
+    <div id="containerMain">
+        <h1>Conversor de moedas</h1>
+        <div id="conversor">
+
+            <label for="optionsCoin">Escolha a opção:</label>
+            <select name="optionsCoin" id="optionsCoin">
+                <option value="usdBrl">Dolar para Real</option>
+                <option value="brlUsd">Real para Dólar</option>
+                <option value="euroBrl">Euro para Real</option>
+                <option value="brlEuro">Real para Euro</option>
+            </select>
+
+           
+            <label for="coinFrom">Valor em Dolár</label>
+            <input id="coinFrom" type="number" placeholder="0.0" min="0">
+
+            <label for="coinTo">Valor em Reais</label>
+            <input id="coinTo" type="number" placeholder="0.0" disabled>
+
+        </div>
+    </div>
+</body>
+</html>

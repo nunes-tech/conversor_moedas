@@ -1,0 +1,48 @@
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0 1.5%;
+}
+
+#containerMain {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #3d3d3d50;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#conversor {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+select, input {
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    color: #333;
+}
+
+label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #555;
+}
+
+input:disabled {
+    background-color: white;
+    color: #208000;
+}
