@@ -4,6 +4,10 @@
 
 Este é um projeto de conversor de moedas desenvolvido como um exercício para a faculdade de Análise e Desenvolvimento de Sistemas. O conversor permite a conversão entre Dólar (USD) e Real (BRL), e entre Euro (EUR) e Real (BRL). O projeto foi implementado utilizando HTML, CSS e JavaScript puro, consumindo a API da [AwesomeAPI](https://economia.awesomeapi.com.br).
 
+## Demonstração
+
+Você pode acessar a versão funcional do projeto através deste link: [Conversor de Moedas - GitHub Pages](https://nunes-tech.github.io/conversor_moedas/)
+
 ## Funcionalidades
 
 - Conversão de Dólar (USD) para Real (BRL)
