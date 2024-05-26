@@ -18,6 +18,7 @@ const inputCoinTo   = document.getElementById("coinTo")
 const select        = document.getElementById("optionsCoin")
 const spanTime      = document.getElementById("hours")
 const url           = "https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL"
+inputCoinFrom.value = 1
 
 async function getCurrentValuesCoins(){
 
@@ -57,52 +58,47 @@ function handleDataReceivesfromApi(response){
     )
 
     showInitialData(dollar)
-
-    setChangeListenerOnSelect( [dollar, euro] )
-    setInputListenerOnInputCoinFrom( [dollar, euro] )
+    setChangeListenerOnSelect( dollar, euro )
+    setInputListenerOnInputCoinFrom( dollar, euro )
 }
 
-function setChangeListenerOnSelect(list){
+function setChangeListenerOnSelect(dollar, euro){
 
     select.addEventListener("change", ()=>{
         const indexSelected = select.selectedIndex
         const optionSelected = select.item(indexSelected).value
-        updateInputsOnDisplay(list, optionSelected)
-        setInputListenerOnInputCoinFrom(list, optionSelected)
+        updateInputsOnDisplay(dollar, euro, optionSelected)
+        setInputListenerOnInputCoinFrom(dollar, euro, optionSelected)
     })
 }
 
-function updateInputsOnDisplay(list, way){
-    const dollar = list[0]
-    const euro = list[1]
+function updateInputsOnDisplay(dollar, euro, option){
+  
     const labelCoinFrom = document.querySelector("label[for='coinFrom']")
     const labelCoinTo = document.querySelector("label[for='coinTo']")
+    inputCoinFrom.focus()
     
-    switch (way) {
+    switch (option) {
         case "usdBrl":
             labelCoinFrom.textContent = "Valor em Dolár"
-            inputCoinFrom.value = "1"
             labelCoinTo.textContent = "Valor em Reais"
             inputCoinTo.value = parseFloat(dollar.currentValue).toFixed(2)
         break;
 
         case "brlUsd":
             labelCoinFrom.textContent = "Valor em Reais"
-            inputCoinFrom.value = "1"
             labelCoinTo.textContent = "Valor em Dolár"
             inputCoinTo.value = parseFloat((1 / dollar.currentValue)).toFixed(2)
         break;
 
         case "euroBrl":
             labelCoinFrom.textContent = "Valor em Euro"
-            inputCoinFrom.value = "1"
             labelCoinTo.textContent = "Valor em Reais"
             inputCoinTo.value = parseFloat(euro.currentValue).toFixed(2)
         break;
 
         case "brlEuro":
             labelCoinFrom.textContent = "Valor em Reais"
-            inputCoinFrom.value = "1"
             labelCoinTo.textContent = "Valor em Euro"
             inputCoinTo.value = parseFloat((1 / euro.currentValue)).toFixed(2)     
         break;
@@ -111,15 +107,13 @@ function updateInputsOnDisplay(list, way){
 }
 
 function setInputListenerOnInputCoinFrom(
-    coins, optionSelected = "usdBrl"
+    dollar, euro, optionSelected = "usdBrl"
 ) {
-    const dolar = coins[0]
-    const euro = coins[1]
 
     inputCoinFrom.addEventListener("input", function() {
         const valueTyping = inputCoinFrom.value
         if(optionSelected == "brlUsd") {
-            const priceBrl = (1 / dolar.currentValue)
+            const priceBrl = (1 / dollar.currentValue)
 
             inputCoinTo.value = (valueTyping * priceBrl).toFixed(2)
 
@@ -133,15 +127,15 @@ function setInputListenerOnInputCoinFrom(
             inputCoinTo.value = (valueTyping * priceBrl).toFixed(2)
     
         } else {
-            inputCoinTo.value = (valueTyping * dolar.currentValue).toFixed(2)
+            inputCoinTo.value = (valueTyping * dollar.currentValue).toFixed(2)
         }
     })
 
 }
 
 function showInitialData(dolar) {
-    inputCoinFrom.value = 1
     inputCoinTo.value = parseFloat(dolar.currentValue).toFixed(2)
+    inputCoinFrom.focus()
 }
 
 getCurrentValuesCoins()
