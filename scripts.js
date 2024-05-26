@@ -67,6 +67,7 @@ function setChangeListenerOnSelect(dollar, euro){
     select.addEventListener("change", ()=>{
         const indexSelected = select.selectedIndex
         const optionSelected = select.item(indexSelected).value
+        inputCoinFrom.value = 1
         updateInputsOnDisplay(dollar, euro, optionSelected)
         setInputListenerOnInputCoinFrom(dollar, euro, optionSelected)
     })
