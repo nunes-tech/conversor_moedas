@@ -88,3 +88,7 @@ input:disabled {
 .modeDark select, .modeDark input {
     border-color: #000;
 }
+
+.modeDark input::placeholder {
+    color: #323232cb;
+}
