@@ -17,8 +17,8 @@ const inputCoinFrom = document.getElementById("coinFrom")
 const inputCoinTo   = document.getElementById("coinTo")
 const select        = document.getElementById("optionsCoin")
 const spanTime      = document.getElementById("hours")
-const imgLight   = document.getElementById("light")
-const imgDark   = document.getElementById("dark")
+const imgLight      = document.getElementById("light")
+const imgDark       = document.getElementById("dark")
 const url           = "https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL"
 inputCoinFrom.value = 1
 
@@ -141,13 +141,15 @@ function showInitialData(dolar) {
     inputCoinFrom.focus()
 }
 
-function toggleMode(){
-
+function toggleDarkMode() {
     imgDark.toggleAttribute("hidden")
     imgLight.toggleAttribute("hidden")
-    const modeDarkActivated = document.body.classList.toggle("modeDark")
+    return document.body.classList.toggle("modeDark")
+}
+
+function changeThemeAndSavePreference(){
     
-    if(modeDarkActivated) {
+    if( toggleDarkMode() ) {
         setModeDark("ativado")
     } else {
         setModeDark("desativado")
@@ -156,18 +158,18 @@ function toggleMode(){
 
 function checkPreferencesUser() {
     const statusModeDark = localStorage.getItem("modeDark")
-    console.log( statusModeDark )
-    if(statusModeDark == "desativado") return
-    document.body.classList.toggle("modeDark")
-    imgDark.toggleAttribute("hidden")
-    imgLight.toggleAttribute("hidden")
+
+    if(statusModeDark == "ativado") {
+        toggleDarkMode()
+    }
+
 }
 
 function setModeDark(isActivated){
     localStorage.setItem("modeDark", isActivated)
 }
 
-document.getElementById("modeDark").addEventListener("click", toggleMode)
+document.getElementById("modeDark").addEventListener("click", changeThemeAndSavePreference)
 
 checkPreferencesUser()
 
